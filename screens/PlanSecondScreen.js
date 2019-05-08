@@ -9,9 +9,10 @@ export default class PlanSecondScreen extends PureComponent {
   }
 
   render() {
+    const { props } = this;
     return (
       <View>
-        <Text> PlanSecondScreen </Text>
+        <Text>{props.navigation.getParam('foo')}</Text>
       </View>
     );
   }
