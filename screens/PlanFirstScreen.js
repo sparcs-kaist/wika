@@ -38,7 +38,7 @@ export default class PlanFirstScreen extends PureComponent {
             </MildTouchable>
           </View>
           <View>
-            <MildTouchable style={styles.destinationButton}>
+            <MildTouchable style={styles.destinationButton} onPress={this._navigateSecond}>
               <Text>다음</Text>
             </MildTouchable>
           </View>
