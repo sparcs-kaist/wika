@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import CommonStyles from '../styles/CommonStyles';
 import MildTouchable from '../components/MildTouchable';
@@ -10,20 +10,20 @@ const styles = {
     backgroundColor: 'skyblue',
     borderRadius: 5,
   },
-}
+};
 
-const ButtonItem = ({ style, ...props }) => <View {...props} style={[styles.buttonItem, ...(Array.isArray(style) ? style : [style])]} />
+const ButtonItem = ({ style, ...props }) => <View {...props} style={[styles.buttonItem, ...(Array.isArray(style) ? style : [style])]} />;
 
 ButtonItem.propTypes = {
   style: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
   ]),
-}
+};
 
 ButtonItem.defaultProps = {
   style: {},
-}
+};
 
 export default class PlanConfirmScreen extends PureComponent {
   constructor(props) {
@@ -33,17 +33,17 @@ export default class PlanConfirmScreen extends PureComponent {
   }
 
   _confirm = () => {
-    const { navigation } = this.props
-    alert('신청 완료!');
+    const { navigation } = this.props;
+    alert('신청 완료!'); // (import { Alert } from 'react-native';) Alert.alert
     navigation.popToTop();
   }
 
   render() {
-    const { navigation } = this.props
-    const origin = navigation.getParam('origin', 'Origin not specified')
-    const destination = navigation.getParam('destination', 'Destination not specified')
-    const startDate = navigation.getParam('startDate', new Date())
-    const endDate = navigation.getParam('endDate', new Date())
+    const { navigation } = this.props;
+    const origin = navigation.getParam('origin', 'Origin not specified');
+    const destination = navigation.getParam('destination', 'Destination not specified');
+    const startDate = navigation.getParam('startDate', new Date());
+    const endDate = navigation.getParam('endDate', new Date());
 
     return (
       <View style={CommonStyles.container}>
