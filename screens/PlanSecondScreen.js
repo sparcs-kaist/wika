@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { View, Text } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import ModalSelector from 'react-native-modal-selector';
 import MildTouchable from '../components/MildTouchable';
 import CommonStyles from '../styles/CommonStyles';
-import ModalSelector from 'react-native-modal-selector'
 
 const styles = {
   map: {
@@ -35,13 +35,11 @@ _hideStartDateTimePicker = () => this.setState({ isStartDateTimePickerVisible: f
 _hideEndDateTimePicker = () => this.setState({ isEndDateTimePickerVisible: false });
 
 _handleStartDatePicked = (date) => {
-  console.log("A date has been picked: ", date);
   this._hideStartDateTimePicker();
   this.setState({ startDate: date });
 };
 
 _handleEndDatePicked = (date) => {
-  console.log("A date has been picked: ", date);
   this._hideEndDateTimePicker();
   this.setState({ endDate: date });
 };
@@ -86,7 +84,7 @@ render() {
           <ModalSelector
             data={data}
             initValue="인원수 선택"
-            onChange={(option)=>this.setState({textInputValue:option.label})}
+            onChange={option => this.setState({ textInputValue: option.label })}
           />
         </View>
       </View>
