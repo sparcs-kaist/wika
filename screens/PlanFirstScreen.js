@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Text, TextInput, View } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import Modalbox from 'react-native-modalbox';
 import MildTouchable from '../components/MildTouchable';
 import CommonStyles from '../styles/CommonStyles';
@@ -22,21 +23,26 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingHorizontal: 40,
+    paddingHorizontal: 20,
     marginBottom: 20,
+  },
+  marginRightLittle: {
+    marginRight: 20,
   },
 };
 
 export default class PlanFirstScreen extends PureComponent {
   state = {
-    isOpen: false,
     type: null,
     origin: null,
     destination: null,
   }
 
   _onDestinationPress = (type) => {
-    this.setState({ isOpen: true, type });
+    if (this.modalRef && this.modalRef.open) {
+      this.modalRef.open();
+      this.setState({ type });
+    }
   }
 
   _onDestinationDismiss = () => {}
@@ -52,7 +58,6 @@ export default class PlanFirstScreen extends PureComponent {
 
   render() {
     const { state } = this;
-    console.log(state.isOpen);
     return (
       <View style={CommonStyles.container}>
         <View style={styles.map} />
@@ -71,8 +76,9 @@ export default class PlanFirstScreen extends PureComponent {
             </MildTouchable>
           </View>
         </View>
-        <Modalbox style={CommonStyles.paddingContainer} isOpen={state.isOpen} onClosed={this._onDestinationDismiss} backdropPressToClose={false}>
+        <Modalbox style={CommonStyles.paddingContainer} ref={(ref) => { this.modalRef = ref; }} backdropPressToClose={false}>
           <View style={styles.searchTextInput}>
+            <MaterialIcons size={20} style={styles.marginRightLittle} name="search" />
             <TextInput placeholder="Enter for search..." placeholderTextColor="#B5B5B5" />
           </View>
         </Modalbox>
