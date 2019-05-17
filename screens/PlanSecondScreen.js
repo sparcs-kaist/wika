@@ -8,7 +8,6 @@ import ModalSelector from 'react-native-modal-selector'
 const styles = {
   map: {
     height: 300,
-    backgroundColor: 'gray',
   },
   destinationButton: {
     height: 50,
@@ -45,6 +44,11 @@ _handleEndDatePicked = (date) => {
   this._hideEndDateTimePicker();
   this.setState({ endDate: date });
 };
+
+_navigateConfirm = () => {
+  const { props } = this;
+  props.navigation.navigate('PlanConfirm', { startDate: this.startDate, endDate: this.endDate, origin: this.origin, destination: this.destination, maxMembers: 4 });
+}
 
 render() {
   const { state } = this;
@@ -89,6 +93,9 @@ render() {
             onChange={(option)=>this.setState({textInputValue:option.label})}
           />
         </View>
+        <MildTouchable style={styles.destinationButton} onPress={this._navigateConfirm}>
+              <Text>다음</Text>
+        </MildTouchable>
       </View>
     </View>
   );
