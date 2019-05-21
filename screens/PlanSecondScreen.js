@@ -4,7 +4,7 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import MildTouchable from '../components/MildTouchable';
 import CommonStyles from '../styles/CommonStyles';
 import ModalSelector from 'react-native-modal-selector'
-
+import RNPickerSelect from 'react-native-picker-select';
 const styles = {
   map: {
     height: 300,
@@ -57,6 +57,17 @@ render() {
     { key: 1, label: '3명' },
     { key: 2, label: '4명' },
   ];
+  const datas = [
+    { label: '2명', value: '2명' },
+    { label: '3명', value: '3명' },
+    { label: '4명', value: '4명' },
+  ];
+
+  const placeholder = {
+    label: '인원수 선택',
+    value: null,
+    style: CommonStyles.paddingContainer,
+  };
   return (
     <View style={[CommonStyles.container, { backgroundColor: 'lightgray' }]}>
       <View style={[CommonStyles.paddingContainer, styles.spaceBetween]}>
@@ -91,6 +102,13 @@ render() {
             data={data}
             initValue="인원수 선택"
             onChange={(option)=>this.setState({textInputValue:option.label})}
+          />
+          <RNPickerSelect
+            style={CommonStyles.paddingContainer}
+            placeholder={placeholder}
+            items={datas}
+            onValueChange={(value) => { this.setState({ textInputValue: value }); }}
+            value={this.state.textInputValue}
           />
         </View>
         <MildTouchable style={styles.destinationButton} onPress={this._navigateConfirm}>
