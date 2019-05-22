@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import CommonStyles from '../styles/CommonStyles';
 import MildTouchable from '../components/MildTouchable';
 
@@ -26,17 +26,12 @@ ButtonItem.defaultProps = {
 };
 
 export default class PlanConfirmScreen extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
 
   _confirm = () => {
     const { navigation } = this.props;
-    alert('신청 완료!'); // (import { Alert } from 'react-native';) Alert.alert
+    Alert.alert('알림', '신청 완료!');
     navigation.popToTop();
-  }
+  };
 
   render() {
     const { navigation } = this.props;
@@ -55,10 +50,10 @@ export default class PlanConfirmScreen extends PureComponent {
             <Text>{destination}</Text>
           </ButtonItem>
           <ButtonItem>
-            <Text>{startDate.toISOString()}</Text>
+            <Text>{startDate.toLocaleString()}</Text>
           </ButtonItem>
           <ButtonItem>
-            <Text>{endDate.toISOString()}</Text>
+            <Text>{endDate.toLocaleString()}</Text>
           </ButtonItem>
         </View>
         <View style={CommonStyles.paddingContainer}>
