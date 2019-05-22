@@ -1,6 +1,4 @@
-import {
-  StyleSheet,
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const mainColor = '#143441';
 
@@ -41,7 +39,6 @@ export default StyleSheet.create({
     height: 50,
     backgroundColor: mainColor,
     borderRadius: 5,
-    padding: 20,
     justifyContent: 'center',
   },
   buttonText: {
