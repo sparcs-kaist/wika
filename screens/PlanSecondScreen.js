@@ -1,10 +1,13 @@
 import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Platform } from 'react-native';
+import { Icon } from 'expo';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import PropTypes from 'prop-types';
 import MildTouchable from '../components/MildTouchable';
 import CommonStyles from '../styles/CommonStyles';
-import ModalSelector from 'react-native-modal-selector'
-import RNPickerSelect from 'react-native-picker-select';
+import TabBarIcon from '../components/TabBarIcon';
+import iconSet from '@expo/vector-icons/build/FontAwesome5';
+
 const styles = {
   map: {
     height: 300,
@@ -18,11 +21,13 @@ const styles = {
   spaceEvenly: { justifyContent: 'space-evenly' },
 };
 
+
 export default class PlanSecondScreen extends PureComponent {
   state = {
     startDate: null,
     endDate: null,
-    textInputValue: null,
+    maxMembers: 2,
+
   }
 
 _showStartDateTimePicker = () => this.setState({ isStartDateTimePickerVisible: true });
@@ -46,44 +51,37 @@ _handleEndDatePicked = (date) => {
 };
 
 _navigateConfirm = () => {
-  const { props } = this;
-  props.navigation.navigate('PlanConfirm', { startDate: this.startDate, endDate: this.endDate, origin: this.origin, destination: this.destination, maxMembers: 4 });
+  const { navigation } = this.props;
+  const { startDate, endDate, origin, destination, maxMembers } = this.state;
+  navigation.navigate('PlanConfirm', { startDate, endDate, origin, destination, maxMembers });
+}
+
+_makeFocused = (num) => {
+  this.setState({ maxMembers: num });
+  console.log("now maxMember is", num);
 }
 
 render() {
   const { state } = this;
-  const data = [
-    { key: 0, label: '2명' },
-    { key: 1, label: '3명' },
-    { key: 2, label: '4명' },
-  ];
-  const datas = [
-    { label: '2명', value: '2명' },
-    { label: '3명', value: '3명' },
-    { label: '4명', value: '4명' },
-  ];
-
-  const placeholder = {
-    label: '인원수 선택',
-    value: null,
-    style: CommonStyles.paddingContainer,
+  const tabBarIcon = ({ focused }) => <TabBarIcon focused={focused} name={Platform.OS === 'android' ? 'md-add' : 'ios-add'} />;
+  tabBarIcon.propTypes = {
+    focused: PropTypes.bool.isRequired,
   };
+  
   return (
-    <View style={[CommonStyles.container, { backgroundColor: 'lightgray' }]}>
+    <View style={[CommonStyles.container, { backgroundColor: 'white' }]}>
       <View style={[CommonStyles.paddingContainer, styles.spaceBetween]}>
         <View style={styles.spaceBetween}>
-          <View style={styles.destinationButton}>
-            <Text>출발지</Text>
-          </View>
-          <View style={styles.destinationButton}>
-            <Text>도착지</Text>
+          <View>
           </View>
           <View>
-            <MildTouchable style={styles.destinationButton} onPress={this._showStartDateTimePicker}>
-              <Text>{state.startDate ? state.startDate.toLocaleString('ko-kr') : '출발 가능한 시간 선택'}</Text>
+            <Text style={CommonStyles.labelText}>출발 가능한 가장 빠른 시간</Text>
+            <MildTouchable style={CommonStyles.searchBox} onPress={this._showStartDateTimePicker}>
+              <Text style={CommonStyles.placeholderText}>{state.startDate ? state.startDate.toLocaleString('ko-kr') : '언제부터 출발 가능한가요?'}</Text>
             </MildTouchable>
-            <MildTouchable style={styles.destinationButton} onPress={this._showEndDateTimePicker}>
-              <Text>{state.endDate ? state.endDate.toLocaleString('ko-kr') : '출발 가능한 시간 선택'}</Text>
+            <Text style={CommonStyles.labelText}>출발 가능한 가장 늦은 시간</Text>
+            <MildTouchable style={CommonStyles.searchBox} onPress={this._showEndDateTimePicker}>
+              <Text style={CommonStyles.placeholderText}>{state.endDate ? state.endDate.toLocaleString('ko-kr') : '언제까지 출발 가능한가요?'}</Text>
             </MildTouchable>
           </View>
           <DateTimePicker
@@ -98,21 +96,40 @@ render() {
             onConfirm={this._handleEndDatePicked}
             onCancel={this._hideEndDateTimePicker}
           />
-          <ModalSelector
-            data={data}
-            initValue="인원수 선택"
-            onChange={(option)=>this.setState({textInputValue:option.label})}
-          />
-          <RNPickerSelect
-            style={CommonStyles.paddingContainer}
-            placeholder={placeholder}
-            items={datas}
-            onValueChange={(value) => { this.setState({ textInputValue: value }); }}
-            value={this.state.textInputValue}
-          />
+          <Text style={CommonStyles.labelText}>탑승 인원수</Text>
+          <View style={[styles.spaceBetween, { flexDirection: 'row' }]}>
+            <MildTouchable onPress={() => this._makeFocused(1)}>
+              <Icon.MaterialCommunityIcons
+                name={Platform.OS === 'android' ? 'human-male' : 'human-male'}
+                size={80}
+                color={(state.maxMembers >= 1) ? 'black' : 'gray'}
+              />
+            </MildTouchable>
+            <MildTouchable onPress={() => this._makeFocused(2)}>
+              <Icon.MaterialCommunityIcons
+                name={Platform.OS === 'android' ? 'human-male' : 'human-male'}
+                size={80}
+                color={(state.maxMembers >= 2) ? 'black' : 'gray'}
+              />
+            </MildTouchable>
+            <MildTouchable onPress={() => this._makeFocused(3)}>
+              <Icon.MaterialCommunityIcons
+                name={Platform.OS === 'android' ? 'human-male' : 'human-male'}
+                size={80}
+                color={(state.maxMembers >= 3) ? 'black' : 'gray'}
+              />
+            </MildTouchable>
+            <MildTouchable onPress={() => this._makeFocused(4)}>
+              <Icon.MaterialCommunityIcons
+                name={Platform.OS === 'android' ? 'human-male' : 'human-male'}
+                size={80}
+                color={(state.maxMembers >= 4) ? 'black' : 'gray'}
+              />
+            </MildTouchable>
+          </View>
         </View>
-        <MildTouchable style={styles.destinationButton} onPress={this._navigateConfirm}>
-              <Text>다음</Text>
+        <MildTouchable style={CommonStyles.button} onPress={this._navigateConfirm}>
+          <Text style={CommonStyles.buttonText}>다음</Text>
         </MildTouchable>
       </View>
     </View>
