@@ -2,11 +2,17 @@ import React, { PureComponent } from 'react';
 import { View, Text, Platform } from 'react-native';
 import { Icon } from 'expo';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+<<<<<<< HEAD
 import PropTypes from 'prop-types';
 import MildTouchable from '../components/MildTouchable';
 import CommonStyles from '../styles/CommonStyles';
 import TabBarIcon from '../components/TabBarIcon';
 import iconSet from '@expo/vector-icons/build/FontAwesome5';
+=======
+import ModalSelector from 'react-native-modal-selector';
+import MildTouchable from '../components/MildTouchable';
+import CommonStyles from '../styles/CommonStyles';
+>>>>>>> 09bb9ccc58fba9ff1010bb548416882d01e36a5c
 
 const styles = {
   map: {
@@ -39,13 +45,11 @@ _hideStartDateTimePicker = () => this.setState({ isStartDateTimePickerVisible: f
 _hideEndDateTimePicker = () => this.setState({ isEndDateTimePickerVisible: false });
 
 _handleStartDatePicked = (date) => {
-  console.log("A date has been picked: ", date);
   this._hideStartDateTimePicker();
   this.setState({ startDate: date });
 };
 
 _handleEndDatePicked = (date) => {
-  console.log("A date has been picked: ", date);
   this._hideEndDateTimePicker();
   this.setState({ endDate: date });
 };
@@ -96,6 +100,7 @@ render() {
             onConfirm={this._handleEndDatePicked}
             onCancel={this._hideEndDateTimePicker}
           />
+<<<<<<< HEAD
           <Text style={CommonStyles.labelText}>탑승 인원수</Text>
           <View style={[styles.spaceBetween, { flexDirection: 'row' }]}>
             <MildTouchable onPress={() => this._makeFocused(1)}>
@@ -127,6 +132,13 @@ render() {
               />
             </MildTouchable>
           </View>
+=======
+          <ModalSelector
+            data={data}
+            initValue="인원수 선택"
+            onChange={option => this.setState({ textInputValue: option.label })}
+          />
+>>>>>>> 09bb9ccc58fba9ff1010bb548416882d01e36a5c
         </View>
         <MildTouchable style={CommonStyles.button} onPress={this._navigateConfirm}>
           <Text style={CommonStyles.buttonText}>다음</Text>
