@@ -4,7 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Modalbox from 'react-native-modalbox';
 import * as Hangul from 'hangul-js';
 import MildTouchable from '../components/MildTouchable';
-import CommonStyles from '../styles/CommonStyles';
+import CommonStyles, { mainColor, disabledColor } from '../styles/CommonStyles';
 
 const styles = {
   map: {
@@ -53,6 +53,7 @@ export default class PlanFirstScreen extends PureComponent {
   render() {
     const { origin, destination, places, placeSearchText } = this.state;
     const searcher = new Hangul.Searcher(placeSearchText);
+    const complete = (origin && destination);
     return (
       <View style={CommonStyles.container}>
         <View style={styles.map} />
@@ -68,13 +69,13 @@ export default class PlanFirstScreen extends PureComponent {
             </MildTouchable>
           </View>
           <View>
-            <MildTouchable style={CommonStyles.button} disabled={origin && destination} onPress={this._navigateSecond}>
+            <MildTouchable style={[CommonStyles.button, { backgroundColor: complete ? mainColor : disabledColor }]} disabled={!complete} onPress={this._navigateSecond}>
               <Text style={CommonStyles.buttonText}>다음</Text>
             </MildTouchable>
           </View>
         </View>
 
-        <Modalbox style={CommonStyles.paddingContainer} ref={(ref) => { this.modalRef = ref; }} backdropPressToClose={false}>
+        <Modalbox style={CommonStyles.paddingContainer} ref={(ref) => { this.modalRef = ref; }} backdropPressToClose={false} onClosed={() => this.setState({ placeSearchText: '' })}>
           <View style={[CommonStyles.searchBox, styles.row]}>
             <TextInput style={CommonStyles.container} placeholder="Search" placeholderTextColor="#B5B5B5" value={placeSearchText} onChangeText={e => this.setState({ placeSearchText: e })} />
             <MaterialIcons size={20} style={styles.marginRightLittle} name="search" />
