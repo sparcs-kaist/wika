@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 const mainColor = '#143441';
+const disabledColor = '#38667F';
 
-export { mainColor };
+export { mainColor, disabledColor };
 
 export default StyleSheet.create({
   container: {
