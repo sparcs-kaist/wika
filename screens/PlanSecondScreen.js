@@ -4,7 +4,7 @@ import { Icon } from 'expo';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import PropTypes from 'prop-types';
 import MildTouchable from '../components/MildTouchable';
-import CommonStyles from '../styles/CommonStyles';
+import CommonStyles, { mainColor, disabledColor } from '../styles/CommonStyles';
 import TabBarIcon from '../components/TabBarIcon';
 
 const styles = {
@@ -26,7 +26,8 @@ export default class PlanSecondScreen extends PureComponent {
     startDate: null,
     endDate: null,
     maxMembers: 2,
-
+    origin: null,
+    destination: null,
   }
 
 _showStartDateTimePicker = () => this.setState({ isStartDateTimePickerVisible: true });
@@ -60,7 +61,12 @@ _makeFocused = (num) => {
 
 render() {
   const { state } = this;
+  const { navigation } = this.props;
+  const origin = navigation.getParam('origin', 'Origin not specified');
+  const destination = navigation.getParam('destination', 'Destination not specified');
+  const { startDate, endDate, maxMembers } = this.state;
   const tabBarIcon = ({ focused }) => <TabBarIcon focused={focused} name={Platform.OS === 'android' ? 'md-add' : 'ios-add'} />;
+  const complete = origin !== '' && destination !== '' && startDate !== '' && endDate !== '' && maxMembers !== '';
   tabBarIcon.propTypes = {
     focused: PropTypes.bool.isRequired,
   };
@@ -70,6 +76,8 @@ render() {
       <View style={[CommonStyles.paddingContainer, styles.spaceBetween]}>
         <View style={styles.spaceBetween}>
           <View>
+            <Text style={CommonStyles.largeText}>{origin}</Text>
+            <Text style={CommonStyles.largeText}>{destination}</Text>
           </View>
           <View>
             <Text style={CommonStyles.labelText}>출발 가능한 가장 빠른 시간</Text>
@@ -125,7 +133,7 @@ render() {
             </MildTouchable>
           </View>
         </View>
-        <MildTouchable style={CommonStyles.button} onPress={this._navigateConfirm}>
+        <MildTouchable style={[CommonStyles.button, { backgroundColor: complete ? mainColor : disabledColor }]} disabled={!complete} onPress={this._navigateConfirm}>
           <Text style={CommonStyles.buttonText}>다음</Text>
         </MildTouchable>
       </View>
