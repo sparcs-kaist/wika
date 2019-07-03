@@ -26,8 +26,6 @@ export default class PlanSecondScreen extends PureComponent {
     startDate: null,
     endDate: null,
     maxMembers: 2,
-    origin: null,
-    destination: null,
   }
 
   _showStartDateTimePicker = () => this.setState({ isStartDateTimePickerVisible: true });
@@ -50,7 +48,9 @@ export default class PlanSecondScreen extends PureComponent {
 
   _navigateConfirm = () => {
     const { navigation } = this.props;
-    const { startDate, endDate, origin, destination, maxMembers } = this.state;
+    const { startDate, endDate, maxMembers } = this.state;
+    const origin = navigation.getParam('origin', 'Origin not specified');
+    const destination = navigation.getParam('destination', 'Destination not specified');
     navigation.navigate('PlanConfirm', { startDate, endDate, origin, destination, maxMembers });
   }
 
