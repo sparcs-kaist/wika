@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, Alert } from 'react-native';
-import CommonStyles from '../styles/CommonStyles';
+import CommonStyles, { mainColor, disabledColor } from '../styles/CommonStyles';
 import MildTouchable from '../components/MildTouchable';
 
 const styles = {
@@ -30,7 +30,7 @@ export default class PlanConfirmScreen extends PureComponent {
   _confirm = () => {
     const { navigation } = this.props;
     Alert.alert('알림', '신청 완료!');
-    navigation.popToTop();
+    //navigation.popToTop();
   };
 
   render() {
@@ -43,23 +43,17 @@ export default class PlanConfirmScreen extends PureComponent {
     return (
       <View style={CommonStyles.container}>
         <View style={CommonStyles.paddingContainer}>
-          <ButtonItem>
-            <Text>{origin}</Text>
-          </ButtonItem>
-          <ButtonItem>
-            <Text>{destination}</Text>
-          </ButtonItem>
-          <ButtonItem>
+          <View>
+            <Text style={CommonStyles.largeText}>{origin}</Text>
+            <Text style={CommonStyles.largeText}>{destination}</Text>
+          </View>
             <Text>{startDate.toLocaleString()}</Text>
-          </ButtonItem>
-          <ButtonItem>
             <Text>{endDate.toLocaleString()}</Text>
-          </ButtonItem>
         </View>
         <View style={CommonStyles.paddingContainer}>
           <ButtonItem>
-            <MildTouchable onPress={this._confirm}>
-              <Text style={{ display: 'flex', textAlign: 'center', justifyContent: 'center' }}>확인</Text>
+            <MildTouchable style={[CommonStyles.button, { backgroundColor: mainColor }]} onPress={this._confirm}>
+              <Text style={CommonStyles.buttonText}>{destination === null ? 'Destination is NULL' : destination}</Text>
             </MildTouchable>
           </ButtonItem>
         </View>
