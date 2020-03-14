@@ -825,6 +825,13 @@
   dependencies:
     react-native-platform-touchable "^1.1.1"
 
+"@expo/vector-icons@^10.0.1":
+  version "10.0.6"
+  resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-10.0.6.tgz#5718953ff0b97827d11dae5787976fa8ce5caaed"
+  integrity sha512-qNlKPNdf073LpeEpyClxAh0D3mmIK4TGAQzeKR0HVwf14RIEe17+mLW5Z6Ka5Ho/lUtKMRPDHumSllFyKvpeGg==
+  dependencies:
+    lodash "^4.17.4"
+
 "@expo/vector-icons@~9.0.0":
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-9.0.0.tgz#7f18e21d3edc8b99b76d7d1b8e26b212393e08b3"
@@ -1051,9 +1058,9 @@ acorn-walk@^6.0.1:
   integrity sha512-OtUw6JUTgxA2QoqqmrmQ7F2NYqiBPi/L2jqHyFtllhOUvXYQXf0Z1CYUinIfyT4bTCGmrA7gX9FvHA81uzCoVw==
 
 acorn@^5.5.3:
-  version "5.7.3"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
-  integrity sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
+  version "5.7.4"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.4.tgz#3e8d8a9947d0599a1796d10225d7432f4a4acf5e"
+  integrity sha512-1D++VG7BhrtvQpNbBzovKNc1FLGGEE/oGe7b9xJm/RFHMBeUaUGpluV9RLjZa47YFdPcDAenEYuq9pQPcMdLJg==
 
 acorn@^6.0.1, acorn@^6.0.7:
   version "6.1.1"
@@ -3831,6 +3838,11 @@ handlebars@^4.0.3:
   optionalDependencies:
     uglify-js "^3.1.4"
 
+hangul-js@^0.2.5:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/hangul-js/-/hangul-js-0.2.6.tgz#3e552e3a68c76498cf2c7993ca354af7bad4730d"
+  integrity sha512-48axU8LgjCD30FEs66Xc04/8knxMwCMQw0f67l67rlttW7VXT3qRJgQeHmhiuGwWXGvSbk6YM0fhQlcjE1JFQA==
+
 har-schema@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-2.0.0.tgz#a94c2224ebcac04782a0d9035521f24735b7ec92"
@@ -5071,6 +5083,11 @@ lodash.filter@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.filter/-/lodash.filter-4.6.0.tgz#668b1d4981603ae1cc5a6fa760143e480b4c4ace"
   integrity sha1-ZosdSYFgOuHMWm+nYBQ+SAtMSs4=
+
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
 
 lodash.map@^4.6.0:
   version "4.6.0"
@@ -6431,6 +6448,13 @@ react-native-modal-datetime-picker@^7.4.0:
     prop-types "^15.7.2"
     react-native-modal "^9.0.0"
 
+react-native-modal-selector@^1.0.3:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-modal-selector/-/react-native-modal-selector-1.1.5.tgz#17fed51943f5025875c0af8f2bd2cbbfcbb3fd6e"
+  integrity sha512-4qjMDSHCoWJSSxCsiNvKQiAH0LMg5ef/dijmlac7km+UzMeAzD6GIub9Xa1vSoQojRkF7NEz5ug+g8giOxDIaA==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-modal@^9.0.0:
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-9.0.0.tgz#0bfd0770361a2e5c6e0072bfdb0f1277f9662dba"
@@ -6446,6 +6470,13 @@ react-native-modalbox@^1.7.1:
   dependencies:
     create-react-class "^15.6.0"
     prop-types "^15.5.10"
+
+react-native-picker-select@^6.1.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-picker-select/-/react-native-picker-select-6.6.0.tgz#a424e2a68dae228c492684a41745c0194cee01f0"
+  integrity sha512-dC+tJc4iv7gjOxXuc2R59rrAAZ/qg8k6HU2xRC65s1uhqflViUPBG1uaHqE/E2D62vntt9+u1qRGbkcYkqOx8g==
+  dependencies:
+    lodash.isequal "^4.5.0"
 
 react-native-platform-touchable@^1.1.1:
   version "1.1.1"
